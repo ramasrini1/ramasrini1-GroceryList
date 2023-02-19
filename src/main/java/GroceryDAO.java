@@ -28,7 +28,8 @@ public class GroceryDAO {
         List<String> groceries = new ArrayList<>();
         try {
             //Write SQL logic here
-            String sql = "change me";
+            //String sql = "change me";
+            String sql = "SELECT * FROM grocery";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -37,6 +38,7 @@ public class GroceryDAO {
         }catch(SQLException e){
             e.printStackTrace();
         }
+        System.out.println("size " + groceries.size());
         return groceries;
     }
     /**
@@ -60,12 +62,15 @@ public class GroceryDAO {
         Connection connection = ConnectionUtil.getConnection();
         try {
             //Write SQL logic here
-            String sql = "change me";
+            //String sql = "change me";
+            String sql = "INSERT INTO Grocery (grocery_name) VALUES (?) ";
             PreparedStatement ps = connection.prepareStatement(sql);
-
+            System.out.println(groceryName);
             //add code that leverages ps.setString here
+            ps.setString(1, groceryName);
 
             ps.executeUpdate();
+            
         }catch(SQLException e){
             e.printStackTrace();
         }
